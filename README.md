@@ -39,7 +39,7 @@ word(词条):
 |字段|类型|说明|
 |-|-|-|
 |uid|-|本站唯一ID|
-|wid|-|该单词ID|
+|wid|-|该单词ID|
 |word|-|单词|
 |pronunciation|-|发音|
 |tone|-|音调|
