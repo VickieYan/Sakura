@@ -25,7 +25,7 @@ user(用户基础信息表):
 |register_ip|-|-|
 |role|-|用户权限|
 
-user_auths:
+user_auths:
 
 |字段|类型|说明|
 |-|-|-|
