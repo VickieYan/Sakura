@@ -5,11 +5,17 @@ import { Loader } from './loader'
 import config from './config/config.default'
 import { crossOrigin } from './utils'
 
+const statics = require('koa-static');
+const path = require('path');
+
 // 加载云函数定义，你可以将云函数拆分到多个文件方便管理，但需要在主文件中加载它们
 require('./cloud/cloud');
 
 const app = new Koa()
 const loader = new Loader(app)
+
+// 设置静态资源目录
+app.use(statics(path.join(__dirname, 'public')));
 
 // 加载云引擎中间件
 app.use(AV.koa());
