@@ -6,4 +6,8 @@ export default class User extends Controller {
     async user() {
         this.ctx.body = await this.ctx.service.user.findAll()
     }
+    @bp.get('/users')
+    async users() {
+        this.ctx.body = 'test'
+    } 
 }
