@@ -1,0 +1,13 @@
+{
+  "name": "sakura-font",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "fontmin": "node script.js",
+    "spider": "font-spider views/index.html"
+  },
+  "dependencies": {
+    "fontmin": "^0.9.7-beta"
+  }
+}
