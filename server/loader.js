@@ -14,7 +14,7 @@ export class Loader {
         this.loadConfig()
         this.loadController()
         this.loadService()
-        this.loadModel()
+        // this.loadModel()
         const r = bp.getRouter()
         // console.log(r) // 打印日志 查看blueprint
         Object.keys(r).forEach(url => {
@@ -57,31 +57,31 @@ export class Loader {
         })
     }
 
-    loadModel() {
-        const { db, username, password, details } = this.app.config.database
-        const Sequelize = require('sequelize')
-        const sequelize = new Sequelize(db, username, password, details)
-        const models = fs.readdirSync(__dirname + '/models')
-        models.forEach(model => {
-            require(__dirname + '/models/' + model).default(sequelize, Sequelize).sync()
-        }) // 建表
-        Object.defineProperty(this.app.context, 'model', {
-            get() {
-                this.cache = this.cache || {}
-                const loaded = this.cache
-                if(!loaded.models) {
-                    loaded.models = {}
-                    models.forEach(model => {
-                        const modelName = model.split('.')[0]
-                        const mod = require(__dirname + '/models/' + modelName).default
-                        // console.log(mod) // 打印日志 数据模型
-                        loaded.models[modelName] = mod(sequelize, Sequelize)
-                    })
-                }
-                return loaded.models
-            }
-        })
-    }
+    // loadModel() {
+    //     const { db, username, password, details } = this.app.config.database
+    //     const Sequelize = require('sequelize')
+    //     const sequelize = new Sequelize(db, username, password, details)
+    //     const models = fs.readdirSync(__dirname + '/models')
+    //     models.forEach(model => {
+    //         require(__dirname + '/models/' + model).default(sequelize, Sequelize).sync()
+    //     }) // 建表
+    //     Object.defineProperty(this.app.context, 'model', {
+    //         get() {
+    //             this.cache = this.cache || {}
+    //             const loaded = this.cache
+    //             if(!loaded.models) {
+    //                 loaded.models = {}
+    //                 models.forEach(model => {
+    //                     const modelName = model.split('.')[0]
+    //                     const mod = require(__dirname + '/models/' + modelName).default
+    //                     // console.log(mod) // 打印日志 数据模型
+    //                     loaded.models[modelName] = mod(sequelize, Sequelize)
+    //                 })
+    //             }
+    //             return loaded.models
+    //         }
+    //     })
+    // }
 
     loadConfig() {
         const configDef = __dirname + '/config/config.default.js'
